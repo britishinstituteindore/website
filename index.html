@@ -88,8 +88,6 @@
         }
 
         /* --- New Animations --- */
-        
-        /* 1. Hero Animations (Run on load/display) */
         @keyframes slideInUp {
             from {
                 opacity: 0;
@@ -112,7 +110,6 @@
         .delay-400 { animation-delay: 0.4s; }
         .delay-500 { animation-delay: 0.5s; }
 
-        /* 2. Scroll Reveal Animations (Triggered by JS) */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -197,11 +194,13 @@
 
     <!-- Header & Navigation -->
     <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
-        <nav class="w-full px-6 py-4 flex justify-between items-center">
-            <a href="#" onclick="showPage('home', this)" class="text-xl md:text-2xl font-extrabold text-gray-900 flex items-center flex-shrink-0">
-                <svg class="w-10 h-6 mr-3 rounded" viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg"><clipPath id="a"><path d="M0 0h60v36H0z"/></clipPath><path d="M0 0h60v36H0z" fill="#012169"/><path d="M0 0l60 36m0-36L0 36" stroke="#fff" stroke-width="6"/><path d="M0 0l60 36m0-36L0 36" clip-path="url(#a)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v36M0 18h60" stroke="#fff" stroke-width="10"/><path d="M30 0v36M0 18h60" stroke="#C8102E" stroke-width="6"/></svg>
-                <span class="text-white bg-blue-800 p-1 mr-1 rounded-sm font-sans">BRITISH</span>
-                <span class="text-blue-800 font-sans">INSTITUTE</span>
+        <nav class="w-full px-4 sm:px-6 py-4 flex justify-between items-center">
+            <a href="#" onclick="showPage('home')" class="text-lg sm:text-2xl font-extrabold text-gray-900 flex items-center flex-shrink-0">
+                <svg class="w-8 h-5 sm:w-10 sm:h-6 mr-2 sm:mr-3 rounded" viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg"><clipPath id="a"><path d="M0 0h60v36H0z"/></clipPath><path d="M0 0h60v36H0z" fill="#012169"/><path d="M0 0l60 36m0-36L0 36" stroke="#fff" stroke-width="6"/><path d="M0 0l60 36m0-36L0 36" clip-path="url(#a)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v36M0 18h60" stroke="#fff" stroke-width="10"/><path d="M30 0v36M0 18h60" stroke="#C8102E" stroke-width="6"/></svg>
+                <div class="flex flex-col sm:flex-row sm:items-center">
+                    <span class="text-white bg-blue-800 px-1 rounded-sm font-sans mr-1 text-sm sm:text-xl">BRITISH</span>
+                    <span class="text-blue-800 font-sans text-sm sm:text-xl">INSTITUTE</span>
+                </div>
             </a>
             <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
                 <a href="#" class="nav-link text-gray-600 font-medium active" onclick="showPage('home', this)">Home</a>
@@ -212,7 +211,7 @@
             </div>
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none p-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -220,12 +219,12 @@
             </div>
         </nav>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('home', this); closeMenu();">Home</a>
-             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('courses', this); closeMenu();">Courses</a>
-             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('timings', this); closeMenu();">Timings</a>
-             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('whyUs', this); closeMenu();">Why Join Us</a>
-             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('contact', this); closeMenu();">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t">
+             <a href="#" class="block py-3 text-gray-600 hover:text-red-500 font-medium border-b border-gray-100" onclick="showPage('home', this); closeMenu();">Home</a>
+             <a href="#" class="block py-3 text-gray-600 hover:text-red-500 font-medium border-b border-gray-100" onclick="showPage('courses', this); closeMenu();">Courses</a>
+             <a href="#" class="block py-3 text-gray-600 hover:text-red-500 font-medium border-b border-gray-100" onclick="showPage('timings', this); closeMenu();">Timings</a>
+             <a href="#" class="block py-3 text-gray-600 hover:text-red-500 font-medium border-b border-gray-100" onclick="showPage('whyUs', this); closeMenu();">Why Join Us</a>
+             <a href="#" class="block py-3 text-gray-600 hover:text-red-500 font-medium" onclick="showPage('contact', this); closeMenu();">Contact</a>
         </div>
     </header>
 
@@ -235,7 +234,7 @@
     </main>
 
     <!-- Sticky Mobile Footer for Calls/Actions -->
-    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-2 md:hidden z-50 flex justify-between items-center sticky-footer">
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-2 md:hidden z-50 flex justify-between items-center sticky-footer safe-area-pb">
         <a href="tel:+916232360306" class="flex-1 mr-2 bg-blue-600 text-white text-center py-3 rounded-lg font-bold shadow-md hover:bg-blue-700 transition">
             <i class="fas fa-phone-alt mr-2"></i> Call Now
         </a>
@@ -245,7 +244,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white pb-20 md:pb-6">
+    <footer class="bg-gray-800 text-white pb-24 md:pb-6">
         <div class="container mx-auto px-6 py-6 text-center">
             <p>&copy; 2025 British Institute of English Language and P.D. All Rights Reserved.</p>
         </div>
@@ -256,56 +255,140 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
 
+        // Helper Functions (Defined first to avoid ReferenceError)
+        function generateCourseCard(title, description, id, delay) {
+             const bullets = description.split(', ').map(item => `<li>${item}</li>`).join('');
+            return `
+                <div class="flip-card h-64 rounded-xl cursor-pointer animated-border-card reveal" style="transition-delay: ${delay}ms" onclick="flipCard(this)">
+                    <div class="flip-card-inner rounded-lg">
+                        <div class="flip-card-front bg-white rounded-lg shadow-lg">
+                            <div class="absolute top-4 left-1/2 -translate-x-1/2 text-3xl md:text-4xl font-bold text-red-500">${id}</div>
+                            <h3 class="font-bold text-lg md:text-xl text-center text-blue-800 px-4">${title}</h3>
+                        </div>
+                        <div class="flip-card-back bg-blue-800 text-white rounded-lg shadow-lg">
+                            <h4 class="font-bold text-base md:text-lg mb-2 md:mb-4 text-center px-2">${title}</h4>
+                            <ul class="text-sm list-disc list-inside text-blue-100 w-full px-2 md:px-4">${bullets}</ul>
+                        </div>
+                    </div>
+                </div>`;
+        }
+        
+        function generateReasonCard(title, description, id, delay) {
+            return `
+                <div class="flip-card h-64 rounded-xl cursor-pointer animated-border-card reveal" style="transition-delay: ${delay}ms" onclick="flipCard(this)">
+                    <div class="flip-card-inner rounded-lg">
+                        <div class="flip-card-front bg-white rounded-lg shadow-lg">
+                            <div class="absolute top-4 left-1/2 -translate-x-1/2 text-3xl md:text-4xl font-bold text-red-500">${id}</div>
+                            <h3 class="font-bold text-lg md:text-xl text-center text-blue-800 px-4">${title}</h3>
+                        </div>
+                        <div class="flip-card-back bg-blue-800 text-white rounded-lg shadow-lg">
+                            <h4 class="font-bold text-base md:text-lg mb-2 md:mb-4 text-center px-2">${title}</h4>
+                            <p class="text-sm text-center text-blue-100 w-full px-2 md:px-4 leading-relaxed">${description}</p>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        function flipCard(element) {
+            document.querySelectorAll('.flip-card.flipped').forEach(card => {
+                if (card !== element) card.classList.remove('flipped');
+            });
+            element.classList.toggle('flipped');
+        }
+
+        function initAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        function updateTitle(pageId) {
+            const titles = { 
+                home: 'Home', 
+                courses: 'Our Courses', 
+                timings: 'Class Timings', 
+                whyUs: 'Why Join Us', 
+                contact: 'Contact Us' 
+            };
+            document.title = `${titles[pageId]} | British Institute`;
+        }
+        
+        function updateActiveLink(pageId, navElement) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            if (navElement) {
+                navElement.classList.add('active');
+            } else {
+                // If no element passed (e.g. from Hero button), find matches based on onclick attribute
+                const matchingLink = document.querySelector(`.nav-link[onclick*="'${pageId}'"]`);
+                if (matchingLink) matchingLink.classList.add('active');
+            }
+        }
+
+        // Pages Content Definitions
         const pages = {
             home: `
                 <div>
                     <section class="hero-gradient text-white">
-                        <div class="container mx-auto px-6 py-12 md:py-16 text-center">
-                            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold uppercase tracking-wider hero-anim">Speak English</h1>
-                            <p class="text-lg md:text-2xl font-light text-blue-200 mt-2 hero-anim delay-100">Easily. Fluently. Confidently.</p>
-                            <p class="text-base md:text-xl font-light text-blue-100 mt-8 max-w-4xl mx-auto leading-relaxed hero-anim delay-200">
+                        <div class="container mx-auto px-4 sm:px-6 py-10 md:py-16 text-center">
+                            <h1 class="text-3xl sm:text-5xl md:text-7xl font-extrabold uppercase tracking-wider hero-anim leading-tight">Speak English</h1>
+                            <p class="text-base sm:text-2xl font-light text-blue-200 mt-2 hero-anim delay-100">Easily. Fluently. Confidently.</p>
+                            <p class="text-sm sm:text-base md:text-xl font-light text-blue-100 mt-6 md:mt-8 max-w-4xl mx-auto leading-relaxed hero-anim delay-200">
                                 Are you a student who wants better grades, a professional who wants to grow in your career, or a job seeker getting ready for interviews? Good English can help you reach your goals. In our classes, you will learn to speak clearly, feel confident, and use English in everyday life. Join us today and start your journey to success!
                             </p>
                             
                             <!-- Key Highlights Bar -->
-                            <div class="mt-12 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 hero-anim delay-300">
-                                <div class="bg-gradient-to-br from-yellow-500/20 to-transparent backdrop-blur-sm p-6 rounded-xl border border-yellow-400 flex flex-col items-center justify-center min-h-[140px] shadow-[0_0_20px_rgba(250,204,21,0.3)]">
-                                    <span class="block text-3xl font-bold text-yellow-300 mb-2">1 Year Access</span>
-                                    <span class="text-lg text-white font-semibold mb-1">3 Months Course + 9 Months Free</span>
-                                    <span class="text-sm text-blue-100">Come and learn for an entire year!</span>
+                            <div class="mt-8 md:mt-12 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-10 hero-anim delay-300">
+                                <div class="bg-gradient-to-br from-yellow-500/20 to-transparent backdrop-blur-sm p-4 md:p-6 rounded-xl border border-yellow-400 flex flex-col items-center justify-center min-h-[120px] md:min-h-[140px] shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                                    <span class="block text-2xl md:text-3xl font-bold text-yellow-300 mb-1 md:mb-2">1 Year Access</span>
+                                    <span class="text-base md:text-lg text-white font-semibold mb-1">3 Months Course + 9 Months Free</span>
+                                    <span class="text-xs md:text-sm text-blue-100">Come and learn for an entire year!</span>
                                 </div>
-                                <div class="bg-gradient-to-br from-yellow-500/20 to-transparent backdrop-blur-sm p-6 rounded-xl border border-yellow-400 flex flex-col items-center justify-center min-h-[140px] shadow-[0_0_20px_rgba(250,204,21,0.3)]">
-                                    <span class="block text-3xl font-bold text-yellow-300 mb-2">Certificate</span>
-                                    <span class="text-lg text-white font-semibold mb-1">Official Recognition</span>
-                                    <span class="text-sm text-blue-100">Get certified upon completion.</span>
+                                <div class="bg-gradient-to-br from-yellow-500/20 to-transparent backdrop-blur-sm p-4 md:p-6 rounded-xl border border-yellow-400 flex flex-col items-center justify-center min-h-[120px] md:min-h-[140px] shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                                    <span class="block text-2xl md:text-3xl font-bold text-yellow-300 mb-1 md:mb-2">Certificate</span>
+                                    <span class="text-base md:text-lg text-white font-semibold mb-1">Official Recognition</span>
+                                    <span class="text-xs md:text-sm text-blue-100">Get certified upon completion.</span>
                                 </div>
                             </div>
 
-                            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12 hero-anim delay-400">
-                                <a href="#" onclick="showPage('courses', document.querySelector('.nav-link[onclick*=\\'courses\\']'))" class="btn-fancy bg-red-500 text-white font-bold px-10 py-4 rounded-full hover:bg-red-600 text-lg shadow-lg w-full sm:w-auto">Explore Our Courses</a>
-                                <a href="British_Institute_Brochure.pdf" download class="btn-fancy btn-ghost font-bold px-10 py-4 rounded-full text-lg shadow-lg w-full sm:w-auto flex items-center justify-center">
+                            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8 md:mt-12 hero-anim delay-400">
+                                <a href="#" onclick="showPage('courses')" class="btn-fancy bg-red-500 text-white font-bold px-8 py-3 md:px-10 md:py-4 rounded-full hover:bg-red-600 text-base md:text-lg shadow-lg w-full sm:w-auto">Explore Our Courses</a>
+                                <a href="British_Institute_Brochure.pdf" download class="btn-fancy btn-ghost font-bold px-8 py-3 md:px-10 md:py-4 rounded-full text-base md:text-lg shadow-lg w-full sm:w-auto flex items-center justify-center">
                                     <i class="fas fa-download mr-2"></i> Download Brochure
                                 </a>
                             </div>
                         </div>
                     </section>
 
-                    <section class="py-16 bg-white">
-                         <div class="container mx-auto px-6 text-center">
-                            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 reveal">Your Journey Starts Here</h2>
-                            <p class="text-lg text-gray-600 max-w-2xl mx-auto reveal">From students to professionals, we provide the tools you need to excel in an English-speaking world.</p>
-                            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                                <div class="card-hover p-8 bg-gray-50 rounded-xl border border-gray-100 reveal delay-100">
-                                    <h3 class="text-2xl font-bold text-blue-800 mb-3">Expert Guidance</h3>
-                                    <p class="text-gray-600">Learn from experienced trainers in a supportive, modern environment tailored to your pace.</p>
+                    <section class="py-12 md:py-16 bg-white">
+                         <div class="container mx-auto px-4 sm:px-6 text-center">
+                            <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 reveal">Your Journey Starts Here</h2>
+                            <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto reveal">From students to professionals, we provide the tools you need to excel in an English-speaking world.</p>
+                            <div class="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                                <div class="card-hover p-6 md:p-8 bg-gray-50 rounded-xl border border-gray-100 reveal delay-100">
+                                    <h3 class="text-xl md:text-2xl font-bold text-blue-800 mb-2 md:mb-3">Expert Guidance</h3>
+                                    <p class="text-sm md:text-base text-gray-600">Learn from experienced trainers in a supportive, modern environment tailored to your pace.</p>
                                 </div>
-                                 <div class="card-hover p-8 bg-gray-50 rounded-xl border border-gray-100 reveal delay-200">
-                                    <h3 class="text-2xl font-bold text-blue-800 mb-3">Practical Skills</h3>
-                                    <p class="text-gray-600">Focus on real-world communication for interviews, corporate work, and daily confidence.</p>
+                                 <div class="card-hover p-6 md:p-8 bg-gray-50 rounded-xl border border-gray-100 reveal delay-200">
+                                    <h3 class="text-xl md:text-2xl font-bold text-blue-800 mb-2 md:mb-3">Practical Skills</h3>
+                                    <p class="text-sm md:text-base text-gray-600">Focus on real-world communication for interviews, corporate work, and daily confidence.</p>
                                 </div>
-                                 <div class="card-hover p-8 bg-gray-50 rounded-xl border border-gray-100 reveal delay-300">
-                                    <h3 class="text-2xl font-bold text-blue-800 mb-3">Guaranteed Growth</h3>
-                                    <p class="text-gray-600">Get 1 Full Year of learning (3 months course + 9 months free practice) and receive your official certificate.</p>
+                                 <div class="card-hover p-6 md:p-8 bg-gray-50 rounded-xl border border-gray-100 reveal delay-300">
+                                    <h3 class="text-xl md:text-2xl font-bold text-blue-800 mb-2 md:mb-3">Guaranteed Growth</h3>
+                                    <p class="text-sm md:text-base text-gray-600">Get 1 Full Year of learning (3 months course + 9 months free practice) and receive your official certificate.</p>
                                 </div>
                             </div>
                          </div>
@@ -313,11 +396,11 @@
                 </div>`,
             courses: `
                 <div>
-                    <section class="py-16">
-                        <div class="container mx-auto px-6">
-                            <div class="text-center mb-12">
-                                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">The Ultimate 8-in-1 Course</h2>
-                                <p class="text-lg text-gray-600 mt-2 reveal">One course, eight essential skills for your personal and professional development.</p>
+                    <section class="py-12 md:py-16">
+                        <div class="container mx-auto px-4 sm:px-6">
+                            <div class="text-center mb-8 md:mb-12">
+                                <h2 class="text-2xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">The Ultimate 8-in-1 Course</h2>
+                                <p class="text-base md:text-lg text-gray-600 mt-2 reveal">One course, eight essential skills for your personal and professional development.</p>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
                                 ${generateCourseCard('Basic Communication', 'Grammar, Vocabulary Building, Sentence Structure, Reading Comprehension', 1, 100)}
@@ -334,53 +417,53 @@
                 </div>`,
             timings: `
                 <div>
-                    <section class="py-16 bg-gray-50">
-                        <div class="container mx-auto px-6">
-                            <div class="text-center mb-12">
-                                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">Class Timings</h2>
-                                <p class="text-lg text-gray-600 mt-2 reveal">Flexible batches to suit your schedule. Choose the time that works best for you.</p>
+                    <section class="py-12 md:py-16 bg-gray-50">
+                        <div class="container mx-auto px-4 sm:px-6">
+                            <div class="text-center mb-8 md:mb-12">
+                                <h2 class="text-2xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">Class Timings</h2>
+                                <p class="text-base md:text-lg text-gray-600 mt-2 reveal">Flexible batches to suit your schedule. Choose the time that works best for you.</p>
                             </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
                                 <!-- Morning Batches -->
-                                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-yellow-400 hover:shadow-xl transition-shadow duration-300 reveal delay-100">
-                                    <div class="flex items-center justify-center mb-6">
-                                        <svg class="w-12 h-12 text-yellow-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                                        <h3 class="text-2xl font-bold text-gray-800">Morning Batches</h3>
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border-t-4 border-yellow-400 hover:shadow-xl transition-shadow duration-300 reveal delay-100">
+                                    <div class="flex items-center justify-center mb-4 md:mb-6">
+                                        <svg class="w-10 h-10 md:w-12 md:h-12 text-yellow-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Morning Batches</h3>
                                     </div>
-                                    <div class="space-y-4">
-                                        <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
-                                            <span class="font-semibold text-gray-700">Batch 1</span>
-                                            <span class="font-bold text-blue-800">7:30 - 9:00 AM</span>
+                                    <div class="space-y-3 md:space-y-4">
+                                        <div class="flex items-center justify-between p-3 md:p-4 bg-yellow-50 rounded-lg">
+                                            <span class="font-semibold text-sm md:text-base text-gray-700">Batch 1</span>
+                                            <span class="font-bold text-sm md:text-base text-blue-800">7:30 - 9:00 AM</span>
                                         </div>
-                                        <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
-                                            <span class="font-semibold text-gray-700">Batch 2</span>
-                                            <span class="font-bold text-blue-800">9:00 - 10:30 AM</span>
+                                        <div class="flex items-center justify-between p-3 md:p-4 bg-yellow-50 rounded-lg">
+                                            <span class="font-semibold text-sm md:text-base text-gray-700">Batch 2</span>
+                                            <span class="font-bold text-sm md:text-base text-blue-800">9:00 - 10:30 AM</span>
                                         </div>
-                                        <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
-                                            <span class="font-semibold text-gray-700">Batch 3</span>
-                                            <span class="font-bold text-blue-800">10:30 - 12:00 PM</span>
+                                        <div class="flex items-center justify-between p-3 md:p-4 bg-yellow-50 rounded-lg">
+                                            <span class="font-semibold text-sm md:text-base text-gray-700">Batch 3</span>
+                                            <span class="font-bold text-sm md:text-base text-blue-800">10:30 - 12:00 PM</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Evening Batches -->
-                                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-xl transition-shadow duration-300 reveal delay-200">
-                                    <div class="flex items-center justify-center mb-6">
-                                        <svg class="w-12 h-12 text-indigo-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                                        <h3 class="text-2xl font-bold text-gray-800">Evening Batches</h3>
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-xl transition-shadow duration-300 reveal delay-200">
+                                    <div class="flex items-center justify-center mb-4 md:mb-6">
+                                        <svg class="w-10 h-10 md:w-12 md:h-12 text-indigo-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                                        <h3 class="text-xl md:text-2xl font-bold text-gray-800">Evening Batches</h3>
                                     </div>
-                                    <div class="space-y-4">
-                                        <div class="flex items-center justify-between p-4 bg-indigo-50 rounded-lg">
-                                            <span class="font-semibold text-gray-700">Batch 1</span>
-                                            <span class="font-bold text-blue-800">4:00 - 5:30 PM</span>
+                                    <div class="space-y-3 md:space-y-4">
+                                        <div class="flex items-center justify-between p-3 md:p-4 bg-indigo-50 rounded-lg">
+                                            <span class="font-semibold text-sm md:text-base text-gray-700">Batch 1</span>
+                                            <span class="font-bold text-sm md:text-base text-blue-800">4:00 - 5:30 PM</span>
                                         </div>
-                                        <div class="flex items-center justify-between p-4 bg-indigo-50 rounded-lg">
-                                            <span class="font-semibold text-gray-700">Batch 2</span>
-                                            <span class="font-bold text-blue-800">5:30 - 7:00 PM</span>
+                                        <div class="flex items-center justify-between p-3 md:p-4 bg-indigo-50 rounded-lg">
+                                            <span class="font-semibold text-sm md:text-base text-gray-700">Batch 2</span>
+                                            <span class="font-bold text-sm md:text-base text-blue-800">5:30 - 7:00 PM</span>
                                         </div>
-                                        <div class="flex items-center justify-between p-4 bg-indigo-50 rounded-lg">
-                                            <span class="font-semibold text-gray-700">Batch 3</span>
-                                            <span class="font-bold text-blue-800">7:00 - 8:30 PM</span>
+                                        <div class="flex items-center justify-between p-3 md:p-4 bg-indigo-50 rounded-lg">
+                                            <span class="font-semibold text-sm md:text-base text-gray-700">Batch 3</span>
+                                            <span class="font-bold text-sm md:text-base text-blue-800">7:00 - 8:30 PM</span>
                                         </div>
                                     </div>
                                 </div>
@@ -390,13 +473,13 @@
                 </div>`,
             whyUs: `
                 <div>
-                    <section class="py-16 bg-white">
-                        <div class="container mx-auto px-6">
-                            <div class="text-center mb-16">
-                                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">10 Reasons To Join Us!</h2>
-                                <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto reveal">"Struggling with English? We're here to help you succeed!"</p>
+                    <section class="py-12 md:py-16 bg-white">
+                        <div class="container mx-auto px-4 sm:px-6">
+                            <div class="text-center mb-8 md:mb-16">
+                                <h2 class="text-2xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">10 Reasons To Join Us!</h2>
+                                <p class="text-base md:text-lg text-gray-600 mt-2 max-w-3xl mx-auto reveal">"Struggling with English? We're here to help you succeed!"</p>
                             </div>
-                            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                                 ${generateReasonCard('Practical Grammar', 'We focus on grammar that you can actually use in conversation, not just abstract rules.', 1, 100)}
                                 ${generateReasonCard('Interview Success', 'Our dedicated modules prepare you to face any job interview with confidence and skill.', 2, 200)}
                                 ${generateReasonCard('Level System', 'You are placed in a batch that matches your skill level, ensuring personalized attention.', 3, 300)}
@@ -413,44 +496,52 @@
                 </div>`,
             contact: `
                 <div>
-                    <section class="py-16">
-                        <div class="container mx-auto px-6">
-                             <div class="text-center mb-12">
-                                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">Our Branches</h2>
-                                <p class="text-lg text-gray-600 mt-2 reveal">Find us at our two convenient Indore locations.</p>
+                    <section class="py-12 md:py-16">
+                        <div class="container mx-auto px-4 sm:px-6">
+                             <div class="text-center mb-8 md:mb-12">
+                                <h2 class="text-2xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">Our Branches</h2>
+                                <p class="text-base md:text-lg text-gray-600 mt-2 reveal">Find us at our two convenient Indore locations.</p>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto">
                                 <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border-t-4 border-red-500 flex flex-col reveal delay-100">
-                                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">Footi Kothi</h3>
-                                    <p class="text-base text-gray-600 mb-6">987-A, Footi Kothi Road, Above Punjab National Bank</p>
-                                    <div class="space-y-4 text-gray-700 mb-6 flex-grow">
-                                        <div class="flex items-center text-lg">
-                                            <svg class="w-6 h-6 mr-3 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    <h3 class="text-xl md:text-3xl font-bold mb-3 md:mb-4 text-gray-800">Footi Kothi</h3>
+                                    <p class="text-sm md:text-base text-gray-600 mb-4 md:mb-6">987-A, Footi Kothi Road, Above Punjab National Bank</p>
+                                    <div class="space-y-3 md:space-y-4 text-gray-700 mb-6 flex-grow">
+                                        <div class="flex items-center text-base md:text-lg">
+                                            <i class="fas fa-map-marker-alt w-5 h-5 md:w-6 md:h-6 mr-3 text-blue-700"></i>
+                                            <span>987-A, Footi Kothi Road, Above Punjab National Bank</span>
+                                        </div>
+                                        <div class="flex items-center text-base md:text-lg">
+                                            <i class="fas fa-phone-alt w-5 h-5 md:w-6 md:h-6 mr-3 text-blue-700"></i>
                                             <a href="tel:07314046644" class="hover:text-red-500">0731-4046644</a>
                                         </div>
-                                        <div class="flex items-center text-lg">
-                                            <svg class="w-6 h-6 mr-3 text-pink-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919 4.919C8.415 2.175 8.796 2.163 12 2.163zm0 1.625c-3.182 0-3.543.01-4.78.068-2.923.134-4.227 1.43-4.36 4.36-.058 1.237-.068 1.598-.068 4.78s.01 3.543.068 4.78c.133 2.923 1.437 4.227 4.36 4.36 1.237.058 1.598.068 4.78.068s3.543-.01 4.78-.068c2.923-.133 4.227-1.437 4.36-4.36.058-1.237.068-1.598.068-4.78s-.01-3.543-.068-4.78c-.133-2.923-1.437-4.227-4.36-4.36C15.543 3.798 15.182 3.788 12 3.788zM12 9.75a4.25 4.25 0 100 8.5 4.25 4.25 0 000-8.5zm0 6.9a2.65 2.65 0 110-5.3 2.65 2.65 0 010 5.3zM16.965 6.575a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"></path></svg>
+                                        <div class="flex items-center text-base md:text-lg">
+                                            <i class="fab fa-instagram w-5 h-5 md:w-6 md:h-6 mr-3 text-pink-600"></i>
                                             <a href="https://instagram.com" class="hover:text-red-500">@britishinstitutefootikothi</a>
                                         </div>
                                     </div>
                                     <div class="map-container rounded-lg overflow-hidden"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.528!2d75.8268!3d22.7088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd16a02931cd%3A0x269a845e62846eda!2sFooti%20Kothi%20Square!5e0!3m2!1sen!2sin!4v1663004818274" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
                                     <div class="mt-3 text-center">
-                                        <a href="https://maps.app.goo.gl/QvWv1obGs9nHkApV8" target="_blank" class="inline-flex items-center text-blue-700 font-semibold hover:text-red-500 transition-colors">
-                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                        <a href="https://maps.app.goo.gl/QvWv1obGs9nHkApV8" target="_blank" class="inline-flex items-center text-blue-700 font-semibold hover:text-red-500 transition-colors text-sm md:text-base">
+                                            <i class="fas fa-location-arrow mr-2"></i>
                                             Get Directions
                                         </a>
                                     </div>
                                 </div>
                                 <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border-t-4 border-red-500 flex flex-col reveal delay-200">
-                                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">Geeta Bhawan</h3>
-                                    <p class="text-base text-gray-600 mb-6">103, First Floor, Alankar Point, Geeta Bhawan Square</p>
-                                     <div class="space-y-4 text-gray-700 mb-6 flex-grow">
-                                        <div class="flex items-center text-lg">
-                                            <svg class="w-6 h-6 mr-3 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    <h3 class="text-xl md:text-3xl font-bold mb-3 md:mb-4 text-gray-800">Geeta Bhawan</h3>
+                                    <p class="text-sm md:text-base text-gray-600 mb-4 md:mb-6">103, First Floor, Alankar Point, Geeta Bhawan Square</p>
+                                     <div class="space-y-3 md:space-y-4 text-gray-700 mb-6 flex-grow">
+                                        <div class="flex items-center text-base md:text-lg">
+                                            <i class="fas fa-map-marker-alt w-5 h-5 md:w-6 md:h-6 mr-3 text-blue-700"></i>
+                                            <span>103, First Floor, Alankar Point, Geeta Bhawan Square</span>
+                                        </div>
+                                        <div class="flex items-center text-base md:text-lg">
+                                            <i class="fas fa-phone-alt w-5 h-5 md:w-6 md:h-6 mr-3 text-blue-700"></i>
                                             <a href="tel:07314049607" class="hover:text-red-500">0731-4049607</a>
                                         </div>
-                                        <div class="flex items-center text-lg">
-                                            <svg class="w-6 h-6 mr-3 text-pink-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919 4.919C8.415 2.175 8.796 2.163 12 2.163zm0 1.625c-3.182 0-3.543.01-4.78.068-2.923.134-4.227 1.43-4.36 4.36-.058 1.237-.068 1.598-.068 4.78s.01 3.543.068 4.78c.133 2.923 1.437 4.227 4.36 4.36 1.237.058 1.598.068 4.78.068s3.543-.01 4.78-.068c2.923-.133 4.227-1.437 4.36-4.36.058-1.237.068-1.598.068-4.78s-.01-3.543-.068-4.78c-.133-2.923-1.437-4.227-4.36-4.36C15.543 3.798 15.182 3.788 12 3.788zM12 9.75a4.25 4.25 0 100 8.5 4.25 4.25 0 000-8.5zm0 6.9a2.65 2.65 0 110-5.3 2.65 2.65 0 010 5.3zM16.965 6.575a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"></path></svg>
+                                        <div class="flex items-center text-base md:text-lg">
+                                            <i class="fab fa-instagram w-5 h-5 md:w-6 md:h-6 mr-3 text-pink-600"></i>
                                             <a href="https://instagram.com" class="hover:text-red-500">@britishinstitutegbhawan</a>
                                         </div>
                                     </div>
@@ -458,8 +549,8 @@
                                 </div>
                             </div>
 
-                            <div class="mt-16 max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-xl reveal delay-300">
-                                <h2 class="text-3xl font-extrabold text-blue-800 mb-8 uppercase">Get In Touch</h2>
+                            <div class="mt-12 md:mt-16 max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-xl reveal delay-300">
+                                <h2 class="text-2xl md:text-3xl font-extrabold text-blue-800 mb-6 md:mb-8 uppercase">Get In Touch</h2>
                                 <form onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon.');">
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
                                         <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required>
@@ -467,7 +558,7 @@
                                     </div>
                                     <div class="mb-6"><input type="text" placeholder="Subject" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required></div>
                                     <div class="mb-6"><textarea placeholder="Your Message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required></textarea></div>
-                                    <button type="submit" class="btn-fancy bg-red-500 text-white font-bold px-10 py-3 rounded-full hover:bg-red-600 shadow-lg text-lg">Send Message</button>
+                                    <button type="submit" class="btn-fancy bg-red-500 text-white font-bold px-10 py-3 rounded-full hover:bg-red-600 shadow-lg text-lg w-full md:w-auto">Send Message</button>
                                 </form>
                             </div>
                         </div>
@@ -475,90 +566,36 @@
                 </div>`
         };
 
-        const pageTitles = { home: 'Home', courses: 'Our Courses', timings: 'Class Timings', whyUs: 'Why Join Us', contact: 'Contact Us' };
-
+        // Main Show Page Function
         function showPage(pageId, navElement) {
             if (pages[pageId]) {
                 mainContent.innerHTML = pages[pageId];
-                updateActiveLink(navElement);
-                updateTitle(pageId);
                 window.scrollTo(0, 0);
                 
-                // Initialize animations for the new content
+                // Animate elements
                 initAnimations();
+                
+                // Update Title
+                updateTitle(pageId);
+
+                // Update Active Link State
+                updateActiveLink(pageId, navElement);
             }
         }
 
-        function initAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target); // Only animate once
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
-            });
-        }
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
         
-        function generateCourseCard(title, description, id, delay) {
-             const bullets = description.split(', ').map(item => `<li>${item}</li>`).join('');
-            return `
-                <div class="flip-card h-64 rounded-xl cursor-pointer animated-border-card reveal" style="transition-delay: ${delay}ms" onclick="flipCard(this)">
-                    <div class="flip-card-inner rounded-lg">
-                        <div class="flip-card-front bg-white rounded-lg shadow-lg">
-                            <div class="absolute top-4 left-1/2 -translate-x-1/2 text-4xl font-bold text-red-500">${id}</div>
-                            <h3 class="font-bold text-xl text-center text-blue-800 px-4">${title}</h3>
-                        </div>
-                        <div class="flip-card-back bg-blue-800 text-white rounded-lg shadow-lg">
-                            <h4 class="font-bold text-lg mb-4 text-center px-2">${title}</h4>
-                            <ul class="text-sm list-disc list-inside text-blue-100 w-full px-4">${bullets}</ul>
-                        </div>
-                    </div>
-                </div>`;
-        }
-        
-        function generateReasonCard(title, description, id, delay) {
-            return `
-                <div class="flip-card h-64 rounded-xl cursor-pointer animated-border-card reveal" style="transition-delay: ${delay}ms" onclick="flipCard(this)">
-                    <div class="flip-card-inner rounded-lg">
-                        <div class="flip-card-front bg-white rounded-lg shadow-lg">
-                            <div class="absolute top-4 left-1/2 -translate-x-1/2 text-4xl font-bold text-red-500">${id}</div>
-                            <h3 class="font-bold text-xl text-center text-blue-800 px-4">${title}</h3>
-                        </div>
-                        <div class="flip-card-back bg-blue-800 text-white rounded-lg shadow-lg">
-                            <h4 class="font-bold text-lg mb-4 text-center px-2">${title}</h4>
-                            <p class="text-sm text-center text-blue-100 w-full px-4 leading-relaxed">${description}</p>
-                        </div>
-                    </div>
-                </div>`;
+        function closeMenu() {
+            mobileMenu.classList.add('hidden');
         }
 
-        function flipCard(element) {
-            document.querySelectorAll('.flip-card.flipped').forEach(card => {
-                if (card !== element) card.classList.remove('flipped');
-            });
-            element.classList.toggle('flipped');
-        }
-
-        function updateTitle(pageId) {
-            document.title = `${pageTitles[pageId]} | British Institute`;
-        }
-        
-        function updateActiveLink(activeElement) {
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            if (activeElement) activeElement.classList.add('active');
-        }
-        
-        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        function closeMenu() { mobileMenu.classList.add('hidden'); }
-
-        window.addEventListener('load', () => showPage('home', document.querySelector('.nav-link')));
+        // Initial page load
+        window.addEventListener('load', () => {
+            showPage('home', document.querySelector('.nav-link'));
+        });
     </script>
 </body>
 </html>
