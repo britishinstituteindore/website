@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>British Institute of English Language and P.D.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .nav-link {
+            position: relative;
+            padding-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #ef4444; /* red-500 */
+        }
+        .nav-link.active {
+            font-weight: 600;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #ef4444; /* red-500 */
+            transform-origin: right;
+            transform: scaleX(0);
+            transition: transform .4s cubic-bezier(.165,.84,.44,1);
+        }
+        .nav-link:hover::after {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+        .nav-link.active::after {
+            transform: scaleX(1);
+            transition: none;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .btn-fancy {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+        }
+        .btn-fancy:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+        }
+        .btn-ghost {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-ghost:hover {
+            background: white;
+            color: #1e3a8a;
+            transform: translateY(-3px);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
+        }
+
+        /* --- New Animations --- */
+        
+        /* 1. Hero Animations (Run on load/display) */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-anim {
+            opacity: 0; /* Initially hidden */
+            animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        /* 2. Scroll Reveal Animations (Triggered by JS) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Flip Card Styles */
+        .flip-card { perspective: 1000px; }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 1.5rem;
+        }
+        .flip-card-back { transform: rotateY(180deg); }
+        
+        .animated-border-card {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            padding: 2px;
+        }
+        .animated-border-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            z-index: -1;
+            background: conic-gradient(
+                #ef4444, #3b82f6, #1e3a8a, #ef4444
+            );
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            animation: rotate 4s linear infinite;
+        }
+        .animated-border-card:hover::before { opacity: 1; }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            width: 100%; height: 100%;
+        }
+        /* Mobile Sticky Footer */
+        .sticky-footer {
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-700 mb-16 md:mb-0">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="w-full px-6 py-4 flex justify-between items-center">
+            <a href="#" onclick="showPage('home', this)" class="text-xl md:text-2xl font-extrabold text-gray-900 flex items-center flex-shrink-0">
+                <svg class="w-10 h-6 mr-3 rounded" viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg"><clipPath id="a"><path d="M0 0h60v36H0z"/></clipPath><path d="M0 0h60v36H0z" fill="#012169"/><path d="M0 0l60 36m0-36L0 36" stroke="#fff" stroke-width="6"/><path d="M0 0l60 36m0-36L0 36" clip-path="url(#a)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v36M0 18h60" stroke="#fff" stroke-width="10"/><path d="M30 0v36M0 18h60" stroke="#C8102E" stroke-width="6"/></svg>
+                <span class="text-white bg-blue-800 p-1 mr-1 rounded-sm font-sans">BRITISH</span>
+                <span class="text-blue-800 font-sans">INSTITUTE</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                <a href="#" class="nav-link text-gray-600 font-medium active" onclick="showPage('home', this)">Home</a>
+                <a href="#" class="nav-link text-gray-600 font-medium" onclick="showPage('courses', this)">Courses</a>
+                <a href="#" class="nav-link text-gray-600 font-medium" onclick="showPage('timings', this)">Timings</a>
+                <a href="#" class="nav-link text-gray-600 font-medium" onclick="showPage('whyUs', this)">Why Join Us</a>
+                <a href="#" class="nav-link text-gray-600 font-medium" onclick="showPage('contact', this)">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('home', this); closeMenu();">Home</a>
+             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('courses', this); closeMenu();">Courses</a>
+             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('timings', this); closeMenu();">Timings</a>
+             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('whyUs', this); closeMenu();">Why Join Us</a>
+             <a href="#" class="block py-2 text-gray-600 hover:text-red-500" onclick="showPage('contact', this); closeMenu();">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="min-h-[calc(100vh-140px)]">
+        <!-- Page content will be dynamically loaded here -->
+    </main>
+
+    <!-- Sticky Mobile Footer for Calls/Actions -->
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-2 md:hidden z-50 flex justify-between items-center sticky-footer">
+        <a href="tel:+916232360306" class="flex-1 mr-2 bg-blue-600 text-white text-center py-3 rounded-lg font-bold shadow-md hover:bg-blue-700 transition">
+            <i class="fas fa-phone-alt mr-2"></i> Call Now
+        </a>
+        <a href="https://wa.me/916232360306" target="_blank" class="flex-1 ml-2 bg-green-500 text-white text-center py-3 rounded-lg font-bold shadow-md hover:bg-green-600 transition">
+            <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pb-20 md:pb-6">
+        <div class="container mx-auto px-6 py-6 text-center">
+            <p>&copy; 2025 British Institute of English Language and P.D. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const mainContent = document.getElementById('main-content');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+        const pages = {
+            home: `
+                <div>
+                    <section class="hero-gradient text-white">
+                        <div class="container mx-auto px-6 py-12 md:py-16 text-center">
+                            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold uppercase tracking-wider hero-anim">Speak English</h1>
+                            <p class="text-lg md:text-2xl font-light text-blue-200 mt-2 hero-anim delay-100">Easily. Fluently. Confidently.</p>
+                            <p class="text-base md:text-xl font-light text-blue-100 mt-8 max-w-4xl mx-auto leading-relaxed hero-anim delay-200">
+                                Are you a student who wants better grades, a professional who wants to grow in your career, or a job seeker getting ready for interviews? Good English can help you reach your goals. In our classes, you will learn to speak clearly, feel confident, and use English in everyday life. Join us today and start your journey to success!
+                            </p>
+                            
+                            <!-- Key Highlights Bar -->
+                            <div class="mt-12 max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 hero-anim delay-300">
+                                <div class="bg-gradient-to-br from-yellow-500/20 to-transparent backdrop-blur-sm p-6 rounded-xl border border-yellow-400 flex flex-col items-center justify-center min-h-[140px] shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                                    <span class="block text-3xl font-bold text-yellow-300 mb-2">1 Year Access</span>
+                                    <span class="text-lg text-white font-semibold mb-1">3 Months Course + 9 Months Free</span>
+                                    <span class="text-sm text-blue-100">Come and learn for an entire year!</span>
+                                </div>
+                                <div class="bg-gradient-to-br from-yellow-500/20 to-transparent backdrop-blur-sm p-6 rounded-xl border border-yellow-400 flex flex-col items-center justify-center min-h-[140px] shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+                                    <span class="block text-3xl font-bold text-yellow-300 mb-2">Certificate</span>
+                                    <span class="text-lg text-white font-semibold mb-1">Official Recognition</span>
+                                    <span class="text-sm text-blue-100">Get certified upon completion.</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12 hero-anim delay-400">
+                                <a href="#" onclick="showPage('courses', document.querySelector('.nav-link[onclick*=\\'courses\\']'))" class="btn-fancy bg-red-500 text-white font-bold px-10 py-4 rounded-full hover:bg-red-600 text-lg shadow-lg w-full sm:w-auto">Explore Our Courses</a>
+                                <a href="British_Institute_Brochure.pdf" download class="btn-fancy btn-ghost font-bold px-10 py-4 rounded-full text-lg shadow-lg w-full sm:w-auto flex items-center justify-center">
+                                    <i class="fas fa-download mr-2"></i> Download Brochure
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="py-16 bg-white">
+                         <div class="container mx-auto px-6 text-center">
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 reveal">Your Journey Starts Here</h2>
+                            <p class="text-lg text-gray-600 max-w-2xl mx-auto reveal">From students to professionals, we provide the tools you need to excel in an English-speaking world.</p>
+                            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <div class="card-hover p-8 bg-gray-50 rounded-xl border border-gray-100 reveal delay-100">
+                                    <h3 class="text-2xl font-bold text-blue-800 mb-3">Expert Guidance</h3>
+                                    <p class="text-gray-600">Learn from experienced trainers in a supportive, modern environment tailored to your pace.</p>
+                                </div>
+                                 <div class="card-hover p-8 bg-gray-50 rounded-xl border border-gray-100 reveal delay-200">
+                                    <h3 class="text-2xl font-bold text-blue-800 mb-3">Practical Skills</h3>
+                                    <p class="text-gray-600">Focus on real-world communication for interviews, corporate work, and daily confidence.</p>
+                                </div>
+                                 <div class="card-hover p-8 bg-gray-50 rounded-xl border border-gray-100 reveal delay-300">
+                                    <h3 class="text-2xl font-bold text-blue-800 mb-3">Guaranteed Growth</h3>
+                                    <p class="text-gray-600">Get 1 Full Year of learning (3 months course + 9 months free practice) and receive your official certificate.</p>
+                                </div>
+                            </div>
+                         </div>
+                    </section>
+                </div>`,
+            courses: `
+                <div>
+                    <section class="py-16">
+                        <div class="container mx-auto px-6">
+                            <div class="text-center mb-12">
+                                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">The Ultimate 8-in-1 Course</h2>
+                                <p class="text-lg text-gray-600 mt-2 reveal">One course, eight essential skills for your personal and professional development.</p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
+                                ${generateCourseCard('Basic Communication', 'Grammar, Vocabulary Building, Sentence Structure, Reading Comprehension', 1, 100)}
+                                ${generateCourseCard('Modern English Fluency', 'Advanced Idioms, Modern Phrases, Flow & Speed, Conversational Practice', 2, 200)}
+                                ${generateCourseCard('Personality Development', 'Confidence Building, Body Language, Positive Attitude, Overcoming Hesitation', 3, 300)}
+                                ${generateCourseCard('Corporate Working Skills', 'Email Etiquette, Business Meetings, Presentations, Client Interaction', 4, 400)}
+                                ${generateCourseCard('Job Interview Skills', 'CV/Resume Writing, HR Questions, Mock Interviews, Self-Introduction', 5, 100)}
+                                ${generateCourseCard('Professional Grooming', 'Dressing Sense, Personal Hygiene, Social Etiquette, First Impressions', 6, 200)}
+                                ${generateCourseCard('Campus Placement G.D.', 'Group Discussion Tactics, Leadership Skills, Logical Arguments, Teamwork', 7, 300)}
+                                ${generateCourseCard('Voice & Accent Modulation', 'Pronunciation, Intonation, Pitch Control, Accent Neutralization', 8, 400)}
+                            </div>
+                        </div>
+                    </section>
+                </div>`,
+            timings: `
+                <div>
+                    <section class="py-16 bg-gray-50">
+                        <div class="container mx-auto px-6">
+                            <div class="text-center mb-12">
+                                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">Class Timings</h2>
+                                <p class="text-lg text-gray-600 mt-2 reveal">Flexible batches to suit your schedule. Choose the time that works best for you.</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                                <!-- Morning Batches -->
+                                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-yellow-400 hover:shadow-xl transition-shadow duration-300 reveal delay-100">
+                                    <div class="flex items-center justify-center mb-6">
+                                        <svg class="w-12 h-12 text-yellow-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                                        <h3 class="text-2xl font-bold text-gray-800">Morning Batches</h3>
+                                    </div>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
+                                            <span class="font-semibold text-gray-700">Batch 1</span>
+                                            <span class="font-bold text-blue-800">7:30 - 9:00 AM</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
+                                            <span class="font-semibold text-gray-700">Batch 2</span>
+                                            <span class="font-bold text-blue-800">9:00 - 10:30 AM</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-yellow-50 rounded-lg">
+                                            <span class="font-semibold text-gray-700">Batch 3</span>
+                                            <span class="font-bold text-blue-800">10:30 - 12:00 PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Evening Batches -->
+                                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-xl transition-shadow duration-300 reveal delay-200">
+                                    <div class="flex items-center justify-center mb-6">
+                                        <svg class="w-12 h-12 text-indigo-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                                        <h3 class="text-2xl font-bold text-gray-800">Evening Batches</h3>
+                                    </div>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between p-4 bg-indigo-50 rounded-lg">
+                                            <span class="font-semibold text-gray-700">Batch 1</span>
+                                            <span class="font-bold text-blue-800">4:00 - 5:30 PM</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-indigo-50 rounded-lg">
+                                            <span class="font-semibold text-gray-700">Batch 2</span>
+                                            <span class="font-bold text-blue-800">5:30 - 7:00 PM</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-4 bg-indigo-50 rounded-lg">
+                                            <span class="font-semibold text-gray-700">Batch 3</span>
+                                            <span class="font-bold text-blue-800">7:00 - 8:30 PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>`,
+            whyUs: `
+                <div>
+                    <section class="py-16 bg-white">
+                        <div class="container mx-auto px-6">
+                            <div class="text-center mb-16">
+                                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">10 Reasons To Join Us!</h2>
+                                <p class="text-lg text-gray-600 mt-2 max-w-3xl mx-auto reveal">"Struggling with English? We're here to help you succeed!"</p>
+                            </div>
+                            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                                ${generateReasonCard('Practical Grammar', 'We focus on grammar that you can actually use in conversation, not just abstract rules.', 1, 100)}
+                                ${generateReasonCard('Interview Success', 'Our dedicated modules prepare you to face any job interview with confidence and skill.', 2, 200)}
+                                ${generateReasonCard('Level System', 'You are placed in a batch that matches your skill level, ensuring personalized attention.', 3, 300)}
+                                ${generateReasonCard('Smart Classrooms', 'We use modern audio-visual tools to make learning interactive, engaging, and effective.', 4, 400)}
+                                ${generateReasonCard('Fluent Speaking', 'Our primary goal is to get you speaking fluently and confidently in real-world scenarios.', 5, 500)}
+                                ${generateReasonCard('1-Year Membership', 'Course duration is 3 months, with 9 months membership for free, giving you a full year of practice.', 6, 100)}
+                                ${generateReasonCard('Official Certification', 'Receive a recognized certificate upon completion, adding valuable credentials to your profile.', 7, 200)}
+                                ${generateReasonCard('Course Material', 'Get high-quality, printed materials to supplement your learning and revise anytime.', 8, 300)}
+                                ${generateReasonCard('IELTS Prep', 'We provide specialized training for students aiming to study abroad and clear the IELTS exam.', 9, 400)}
+                                ${generateReasonCard('All-Round Skills', 'Our approach covers all four pillars: Speaking, Writing, Reading, and Listening.', 10, 500)}
+                            </div>
+                        </div>
+                    </section>
+                </div>`,
+            contact: `
+                <div>
+                    <section class="py-16">
+                        <div class="container mx-auto px-6">
+                             <div class="text-center mb-12">
+                                <h2 class="text-3xl md:text-4xl font-extrabold text-blue-800 uppercase reveal">Our Branches</h2>
+                                <p class="text-lg text-gray-600 mt-2 reveal">Find us at our two convenient Indore locations.</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto">
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border-t-4 border-red-500 flex flex-col reveal delay-100">
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">Footi Kothi</h3>
+                                    <p class="text-base text-gray-600 mb-6">987-A, Footi Kothi Road, Above Punjab National Bank</p>
+                                    <div class="space-y-4 text-gray-700 mb-6 flex-grow">
+                                        <div class="flex items-center text-lg">
+                                            <svg class="w-6 h-6 mr-3 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                            <a href="tel:07314046644" class="hover:text-red-500">0731-4046644</a>
+                                        </div>
+                                        <div class="flex items-center text-lg">
+                                            <svg class="w-6 h-6 mr-3 text-pink-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919 4.919C8.415 2.175 8.796 2.163 12 2.163zm0 1.625c-3.182 0-3.543.01-4.78.068-2.923.134-4.227 1.43-4.36 4.36-.058 1.237-.068 1.598-.068 4.78s.01 3.543.068 4.78c.133 2.923 1.437 4.227 4.36 4.36 1.237.058 1.598.068 4.78.068s3.543-.01 4.78-.068c2.923-.133 4.227-1.437 4.36-4.36.058-1.237.068-1.598.068-4.78s-.01-3.543-.068-4.78c-.133-2.923-1.437-4.227-4.36-4.36C15.543 3.798 15.182 3.788 12 3.788zM12 9.75a4.25 4.25 0 100 8.5 4.25 4.25 0 000-8.5zm0 6.9a2.65 2.65 0 110-5.3 2.65 2.65 0 010 5.3zM16.965 6.575a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"></path></svg>
+                                            <a href="https://instagram.com" class="hover:text-red-500">@britishinstitutefootikothi</a>
+                                        </div>
+                                    </div>
+                                    <div class="map-container rounded-lg overflow-hidden"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.528!2d75.8268!3d22.7088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd16a02931cd%3A0x269a845e62846eda!2sFooti%20Kothi%20Square!5e0!3m2!1sen!2sin!4v1663004818274" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+                                    <div class="mt-3 text-center">
+                                        <a href="https://maps.app.goo.gl/QvWv1obGs9nHkApV8" target="_blank" class="inline-flex items-center text-blue-700 font-semibold hover:text-red-500 transition-colors">
+                                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                            Get Directions
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg border-t-4 border-red-500 flex flex-col reveal delay-200">
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800">Geeta Bhawan</h3>
+                                    <p class="text-base text-gray-600 mb-6">103, First Floor, Alankar Point, Geeta Bhawan Square</p>
+                                     <div class="space-y-4 text-gray-700 mb-6 flex-grow">
+                                        <div class="flex items-center text-lg">
+                                            <svg class="w-6 h-6 mr-3 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                            <a href="tel:07314049607" class="hover:text-red-500">0731-4049607</a>
+                                        </div>
+                                        <div class="flex items-center text-lg">
+                                            <svg class="w-6 h-6 mr-3 text-pink-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664-4.771 4.919 4.919C8.415 2.175 8.796 2.163 12 2.163zm0 1.625c-3.182 0-3.543.01-4.78.068-2.923.134-4.227 1.43-4.36 4.36-.058 1.237-.068 1.598-.068 4.78s.01 3.543.068 4.78c.133 2.923 1.437 4.227 4.36 4.36 1.237.058 1.598.068 4.78.068s3.543-.01 4.78-.068c2.923-.133 4.227-1.437 4.36-4.36.058-1.237.068-1.598.068-4.78s-.01-3.543-.068-4.78c-.133-2.923-1.437-4.227-4.36-4.36C15.543 3.798 15.182 3.788 12 3.788zM12 9.75a4.25 4.25 0 100 8.5 4.25 4.25 0 000-8.5zm0 6.9a2.65 2.65 0 110-5.3 2.65 2.65 0 010 5.3zM16.965 6.575a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"></path></svg>
+                                            <a href="https://instagram.com" class="hover:text-red-500">@britishinstitutegbhawan</a>
+                                        </div>
+                                    </div>
+                                     <div class="map-container rounded-lg overflow-hidden"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.999!2d75.8889!3d22.7281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd4400000001%3A0x7a63a513f173f44!2sGeeta%20Bhawan!5e0!3m2!1sen!2sin!4v1663004945892" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+                                </div>
+                            </div>
+
+                            <div class="mt-16 max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-xl reveal delay-300">
+                                <h2 class="text-3xl font-extrabold text-blue-800 mb-8 uppercase">Get In Touch</h2>
+                                <form onsubmit="event.preventDefault(); alert('Thank you! We will contact you soon.');">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+                                        <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required>
+                                        <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required>
+                                    </div>
+                                    <div class="mb-6"><input type="text" placeholder="Subject" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required></div>
+                                    <div class="mb-6"><textarea placeholder="Your Message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required></textarea></div>
+                                    <button type="submit" class="btn-fancy bg-red-500 text-white font-bold px-10 py-3 rounded-full hover:bg-red-600 shadow-lg text-lg">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>`
+        };
+
+        const pageTitles = { home: 'Home', courses: 'Our Courses', timings: 'Class Timings', whyUs: 'Why Join Us', contact: 'Contact Us' };
+
+        function showPage(pageId, navElement) {
+            if (pages[pageId]) {
+                mainContent.innerHTML = pages[pageId];
+                updateActiveLink(navElement);
+                updateTitle(pageId);
+                window.scrollTo(0, 0);
+                
+                // Initialize animations for the new content
+                initAnimations();
+            }
+        }
+
+        function initAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        function generateCourseCard(title, description, id, delay) {
+             const bullets = description.split(', ').map(item => `<li>${item}</li>`).join('');
+            return `
+                <div class="flip-card h-64 rounded-xl cursor-pointer animated-border-card reveal" style="transition-delay: ${delay}ms" onclick="flipCard(this)">
+                    <div class="flip-card-inner rounded-lg">
+                        <div class="flip-card-front bg-white rounded-lg shadow-lg">
+                            <div class="absolute top-4 left-1/2 -translate-x-1/2 text-4xl font-bold text-red-500">${id}</div>
+                            <h3 class="font-bold text-xl text-center text-blue-800 px-4">${title}</h3>
+                        </div>
+                        <div class="flip-card-back bg-blue-800 text-white rounded-lg shadow-lg">
+                            <h4 class="font-bold text-lg mb-4 text-center px-2">${title}</h4>
+                            <ul class="text-sm list-disc list-inside text-blue-100 w-full px-4">${bullets}</ul>
+                        </div>
+                    </div>
+                </div>`;
+        }
+        
+        function generateReasonCard(title, description, id, delay) {
+            return `
+                <div class="flip-card h-64 rounded-xl cursor-pointer animated-border-card reveal" style="transition-delay: ${delay}ms" onclick="flipCard(this)">
+                    <div class="flip-card-inner rounded-lg">
+                        <div class="flip-card-front bg-white rounded-lg shadow-lg">
+                            <div class="absolute top-4 left-1/2 -translate-x-1/2 text-4xl font-bold text-red-500">${id}</div>
+                            <h3 class="font-bold text-xl text-center text-blue-800 px-4">${title}</h3>
+                        </div>
+                        <div class="flip-card-back bg-blue-800 text-white rounded-lg shadow-lg">
+                            <h4 class="font-bold text-lg mb-4 text-center px-2">${title}</h4>
+                            <p class="text-sm text-center text-blue-100 w-full px-4 leading-relaxed">${description}</p>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        function flipCard(element) {
+            document.querySelectorAll('.flip-card.flipped').forEach(card => {
+                if (card !== element) card.classList.remove('flipped');
+            });
+            element.classList.toggle('flipped');
+        }
+
+        function updateTitle(pageId) {
+            document.title = `${pageTitles[pageId]} | British Institute`;
+        }
+        
+        function updateActiveLink(activeElement) {
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            if (activeElement) activeElement.classList.add('active');
+        }
+        
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        function closeMenu() { mobileMenu.classList.add('hidden'); }
+
+        window.addEventListener('load', () => showPage('home', document.querySelector('.nav-link')));
+    </script>
+</body>
+</html>
+
+
