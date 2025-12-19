@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>British Institute of English Language and P.D.</title>
+    
+    <!-- SEO: Title includes primary keywords -->
+    <title>British Institute | Best Spoken English Class In Indore</title>
+    
+    <!-- SEO: Meta Description for Search Results -->
+    <meta name="description" content="Join British Institute in Indore for the best Spoken English classes, Personality Development, and IELTS prep. 8-in-1 Course with 1 Year Access. Locations: Footi Kothi & Geeta Bhawan.">
+    
+    <!-- SEO: Keywords (Secondary importance, but helpful) -->
+    <meta name="keywords" content="English class in Indore, Spoken English class in Indore, British Institute, Personality Development, IELTS coaching Indore, English speaking course near me">
+    
+    <!-- SEO: Local Geo Tags -->
+    <meta name="geo.region" content="IN-MP" />
+    <meta name="geo.placename" content="Indore" />
+    <meta name="geo.position" content="22.7196;75.8577" />
+    <meta name="ICBM" content="22.7196, 75.8577" />
+
     <!-- Website Icon / Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="https://i.ibb.co/BHcB2JW8/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/1Jdt1w41/favicon-32x32.png">
@@ -18,6 +33,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- SEO: Structured Data (Schema.org) for Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "British Institute of English Language and P.D.",
+      "image": "https://i.ibb.co/5gDvM29q/android-chrome-512x512.png",
+      "telephone": "+916232360306",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Indore",
+        "addressRegion": "Madhya Pradesh",
+        "addressCountry": "IN"
+      },
+      "url": "https://your-website-url.com",
+      "sameAs": [
+        "https://instagram.com/britishinstitutefootikothi",
+        "https://instagram.com/britishinstitutegbhawan"
+      ],
+      "department": [
+        {
+          "@type": "LocalBusiness",
+          "name": "British Institute Footi Kothi",
+          "address": "987-A, Footi Kothi Road, Above Punjab National Bank, Indore, Madhya Pradesh"
+        },
+        {
+          "@type": "LocalBusiness",
+          "name": "British Institute Geeta Bhawan",
+          "address": "103, First Floor, Alankar Point, Geeta Bhawan Square, Indore, Madhya Pradesh"
+        }
+      ]
+    }
+    </script>
+
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -255,7 +305,7 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
 
-        // Helper Functions (Defined first to avoid ReferenceError)
+        // Helper Functions
         function generateCourseCard(title, description, id, delay) {
              const bullets = description.split(', ').map(item => `<li>${item}</li>`).join('');
             return `
@@ -315,13 +365,13 @@
 
         function updateTitle(pageId) {
             const titles = { 
-                home: 'Home', 
-                courses: 'Our Courses', 
-                timings: 'Class Timings', 
-                whyUs: 'Why Join Us', 
-                contact: 'Contact Us' 
+                home: 'Home | British Institute Indore', 
+                courses: 'Our Courses | British Institute', 
+                timings: 'Class Timings | British Institute', 
+                whyUs: 'Why Join Us | British Institute', 
+                contact: 'Contact Us | British Institute' 
             };
-            document.title = `${titles[pageId]} | British Institute`;
+            document.title = titles[pageId] || 'British Institute of English Language and P.D.';
         }
         
         function updateActiveLink(pageId, navElement) {
@@ -347,7 +397,7 @@
                             <h1 class="text-3xl sm:text-5xl md:text-7xl font-extrabold uppercase tracking-wider hero-anim leading-tight">Speak English</h1>
                             <p class="text-base sm:text-2xl font-light text-blue-200 mt-2 hero-anim delay-100">Easily. Fluently. Confidently.</p>
                             <p class="text-sm sm:text-base md:text-xl font-light text-blue-100 mt-6 md:mt-8 max-w-4xl mx-auto leading-relaxed hero-anim delay-200">
-                                Are you a student who wants better grades, a professional who wants to grow in your career, or a job seeker getting ready for interviews? Good English can help you reach your goals. In our classes, you will learn to speak clearly, feel confident, and use English in everyday life. Join us today and start your journey to success!
+                                Are you a student who wants better grades, a professional who wants to grow in your career, or a job seeker getting ready for interviews? Good English can help you reach your goals. In our classes, you will learn to speak clearly, feel confident, and use English in everyday life. Join us today in Indore and start your journey to success!
                             </p>
                             
                             <!-- Key Highlights Bar -->
